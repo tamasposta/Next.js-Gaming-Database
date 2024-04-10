@@ -1,9 +1,16 @@
-import React from 'react'
+import { getTrendingGames } from '../../utils/requests';
 
-const GameDetailsPage = () => {
+export default async function GameDetailsPage({params}) {
+
+  const gameDetails = await getTrendingGames(params.slug);
+
   return (
-    <div>GameDetailsPage</div>
+    <div>
+      <p>{gameDetails.name}</p>
+      <p>{params.slug}</p>
+      <p>{params.name}</p>
+    </div>
   )
 }
 
-export default GameDetailsPage
+//ez nem működik

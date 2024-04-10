@@ -1,6 +1,6 @@
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-export const getTrendingGames = async (slug) => {
+export const getTrendingGames = async () => {
     const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}`);
     const data = await res.json();
     return data.results;
@@ -17,7 +17,7 @@ export const getGames = async (query) => {
 export const getGameDetails = async (slug: string) => {
     const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}`);
     const data = await res.json();
-    return data;
+    return data.results;
 }
 
 // ez még nem jó
