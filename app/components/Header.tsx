@@ -1,12 +1,13 @@
 'use client'
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const navigation = [
     { name: 'Homepage', href: '/', current: true },
-    { name: 'Games', href: '/games/page.tsx', current: false },
+    { name: 'Games', href: '/games', current: false },
     { name: 'Projects', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
 ]
@@ -16,6 +17,16 @@ function classNames(...classes) {
 }
 
 const Header = () => {
+
+    const [searchText, setSearchText] = useState("");
+    const router = useRouter();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (searchText) {
+            router.push(`/games/search?query=${encodeURIComponent(searchText)}`);
+        }
+    }
+
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -37,9 +48,9 @@ const Header = () => {
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
-                                        className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
+                                        className="h-10 w-auto"
+                                        src="/gaming-database-logo.svg"
+                                        alt="Gaming Database logo"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
@@ -61,21 +72,24 @@ const Header = () => {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
-                                <form className="max-w-md mx-auto">
+                                <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                                     <div className="relative">
-                                        
-                                        <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search games..." required />
+                                        <input
+                                            onChange={e => setSearchText(e.target.value)}
+                                            type="search"
+                                            id="default-search"
+                                            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Search games..."
+                                            required
+                                        />
                                         <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                             <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                 <path stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg></button>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </form>
-
-
-                                
                             </div>
                         </div>
                     </div>
