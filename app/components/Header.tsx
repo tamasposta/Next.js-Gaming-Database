@@ -7,12 +7,10 @@ import { useState } from 'react'
 
 const navigation = [
     { name: 'Homepage', href: '/', current: true },
-    { name: 'Games', href: '/games', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
+    { name: 'My Games', href: '/games', current: false },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
 
@@ -20,20 +18,21 @@ const Header = () => {
 
     const [searchText, setSearchText] = useState("");
     const router = useRouter();
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         if (searchText) {
-            router.push(`/games/search?query=${encodeURIComponent(searchText)}`);
+            router.push(`/games/search?query=${searchText}`);
         }
     }
+    console.log("Search Text:", searchText)
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
                 <>
                     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                        <div className="relative flex h-16 items-center justify-between">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <div className="relative flex flex-wrap h-16 items-center justify-between">
+                            <div className="relative inset-y-0 left-0 flex max-sm:w-1/3 items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="absolute -inset-0.5" />
@@ -45,7 +44,7 @@ const Header = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex flex-1 max-sm:w-1/3 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
                                     <img
                                         className="h-10 w-auto"
@@ -71,25 +70,73 @@ const Header = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-                                    <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                            {/* Search form */}
+                            <div className="flex max-sm:w-1/3 mx-auto max-w-md justify-end">
+                                {/* <form
+                                    onSubmit={handleSubmit}
+                                    className="relative max-sm:absolute max-sm:top-3 mx-auto w-max"
+                                >
+                                    <input
+                                        onChange={e => setSearchText(e.target.value)}
+                                        type="search"
+                                        id="default-search"
+                                        className="peer cursor-pointer relative z-10 h-10 w-12 rounded-lg border-2 border-primary bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-secondary focus:pl-16 focus:pr-4"
+                                        placeholder="Search games..."
+                                        required
+                                    />
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-primary px-3.5 peer-focus:border-secondary peer-focus:stroke-secondary cursor-pointer"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            type="submit"
+                                            onClick={handleSubmit}
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            />
+                                        </svg>
+                                </form> */}
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="relative max-sm:absolute max-sm:top-3 mx-auto w-max"
+                                >
                                     <div className="relative">
                                         <input
                                             onChange={e => setSearchText(e.target.value)}
                                             type="search"
                                             id="default-search"
-                                            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            className="peer cursor-pointer relative z-10 focus:z-0 h-10 w-12 rounded-lg border-2 border-primary bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-secondary focus:pl-16 focus:pr-4"
                                             placeholder="Search games..."
                                             required
                                         />
-                                        <button type="submit" className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="white" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                        <button
+                                            type="submit"
+                                            className="absolute inset-y-0 left-0 my-auto h-8 w-12 border-l border-transparent stroke-primary px-3.5 peer-focus:border-secondary peer-focus:stroke-secondary cursor-pointer"
+                                            onClick={handleSubmit}
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-full w-full"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="primary"
+                                                strokeWidth="2"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                                />
                                             </svg>
                                         </button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </div>

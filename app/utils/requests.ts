@@ -6,8 +6,8 @@ export const getGames = async () => {
     return data.results;
 }
 
-export const getSearchedGames = async (search: string) => {
-    const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&search_precise=${search}&page_size=12`);
+export const getSearchedGames = async (query: string) => {
+    const res = await fetch(`https://api.rawg.io/api/games?key=${API_KEY}&search=${query}&page_size=36`);
     const data = await res.json();
     return data.results;
 }
