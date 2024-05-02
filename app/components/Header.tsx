@@ -13,7 +13,6 @@ const navigation = [
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
 }
-
 const Header = () => {
 
     const [searchText, setSearchText] = useState("");
@@ -46,11 +45,11 @@ const Header = () => {
                             </div>
                             <div className="flex flex-1 max-sm:w-1/3 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
+                                    <a href="/"><img
                                         className="h-10 w-auto"
                                         src="/gaming-database-logo.svg"
                                         alt="Gaming Database logo"
-                                    />
+                                    /></a>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
                                     <div className="flex space-x-4">
@@ -72,51 +71,22 @@ const Header = () => {
                             </div>
                             {/* Search form */}
                             <div className="flex max-sm:w-1/3 mx-auto max-w-md justify-end">
-                                {/* <form
-                                    onSubmit={handleSubmit}
-                                    className="relative max-sm:absolute max-sm:top-3 mx-auto w-max"
-                                >
-                                    <input
-                                        onChange={e => setSearchText(e.target.value)}
-                                        type="search"
-                                        id="default-search"
-                                        className="peer cursor-pointer relative z-10 h-10 w-12 rounded-lg border-2 border-primary bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-secondary focus:pl-16 focus:pr-4"
-                                        placeholder="Search games..."
-                                        required
-                                    />
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-primary px-3.5 peer-focus:border-secondary peer-focus:stroke-secondary cursor-pointer"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            type="submit"
-                                            onClick={handleSubmit}
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                            />
-                                        </svg>
-                                </form> */}
                                 <form
                                     onSubmit={handleSubmit}
                                     className="relative max-sm:absolute max-sm:top-3 mx-auto w-max"
                                 >
-                                    <div className="relative">
+                                    <div className="relative bg-neutral">
                                         <input
                                             onChange={e => setSearchText(e.target.value)}
                                             type="search"
                                             id="default-search"
-                                            className="peer cursor-pointer relative z-10 focus:z-0 h-10 w-12 rounded-lg border-2 border-primary bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-secondary focus:pl-16 focus:pr-4"
+                                            className="peer cursor-pointer relative z-10 focus:z-0 h-10 w-12 rounded-lg bg-transparent border-2 border-primary pl-12 outline-none focus:w-full focus:cursor-text focus:border-secondary focus:pl-16 focus:pr-4"
                                             placeholder="Search games..."
                                             required
                                         />
                                         <button
                                             type="submit"
-                                            className="absolute inset-y-0 left-0 my-auto h-8 w-12 border-l border-transparent stroke-primary px-3.5 peer-focus:border-secondary peer-focus:stroke-secondary cursor-pointer"
+                                            className="absolute bg-neutral inset-y-0 left-0 my-auto h-8 w-12 border-l border-transparent stroke-primary px-3.5 peer-focus:border-secondary peer-focus:stroke-secondary cursor-pointer"
                                             onClick={handleSubmit}
                                         >
                                             <svg
