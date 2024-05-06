@@ -1,14 +1,16 @@
 import cheerio from 'cheerio';
+import { GameDetailsPageProps } from '../../types/GameDetails.types';
 
-export default function GameDescription({ gameDetails }) {
+export default function GameDescription({ gameDetails }: GameDetailsPageProps) {
     const htmlString = gameDetails.description;
     const $ = cheerio.load(htmlString);
     $('p:contains("Español")').remove();
     const modifiedGameDescription = $('body').html();
 
-    const isPlatformPc = gameDetails.platforms && gameDetails.platforms.find((platform: any) => platform.name = "PC");
-    const reqMinimum = gameDetails.platforms.find((platform: any) => platform.name === "PC").requirements.minimum;
-    const reqRecommended = gameDetails.platforms.find((platform: any) => platform.name === "PC").requirements.recommended;
+    const isPlatformPc = gameDetails.platforms && gameDetails.platforms.find((platform) => platform.name = "PC");
+    const pcPlatform = gameDetails.platforms.find(platform => platform.platform.name === "PC");
+    const reqMinimum = pcPlatform?.requirements?.minimum;
+    const reqRecommended = pcPlatform?.requirements?.recommended;
 
     return (
         <div className='flex flex-nowrap pb-10 gap-4 max-md:flex-wrap'>

@@ -1,7 +1,13 @@
 import SearchResults from '../../components/SearchResults';
 import { getSearchedGames } from '../../utils/requests';
 
-async function SearchPage({ searchParams }: any) {
+type SearchPageProps = {
+  searchParams: {
+    query: string
+  }
+};
+
+async function SearchPage({ searchParams }: SearchPageProps) {
   const searchText = searchParams.query;
   const games = await getSearchedGames(searchText)
 

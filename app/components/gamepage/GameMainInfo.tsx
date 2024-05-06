@@ -1,4 +1,6 @@
-export default function GameMainInfo({gameDetails}) {
+import { GameDetailsPageProps } from "../../types/GameDetails.types"
+
+export default function GameMainInfo({gameDetails}: GameDetailsPageProps) {
     return (
         <div className='flex flex-row pb-10 justify-between flex-wrap gap-2'>
             <div>
