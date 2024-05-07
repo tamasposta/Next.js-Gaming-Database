@@ -20,7 +20,10 @@ export default async function Card({ game }: GamesProps) {
                 </div>
                 <div className='flex flex-row'>
                     <img className="w-[20px] mr-2" src="/images/Metacritic.svg" alt="Metacritic" />
-                    <h3 className="text-sm">Metacritic score: {game.metacritic}</h3>
+                    {game.metacritic == null
+                        ? <h3 className="text-sm">Metacritic score: N/A</h3>
+                        : <h3 className="text-sm">Metacritic score: {game.metacritic}</h3>
+                    }
                 </div>
                 <h4 className="text-sm">Release date: {game.released}</h4>
                 <Link href={`/games/${game.slug}`}>

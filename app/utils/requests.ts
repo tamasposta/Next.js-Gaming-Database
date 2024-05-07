@@ -27,7 +27,6 @@ export const getGameDetails = async (slug: string): Promise<any | null> => {
     try {
         const res = await fetch(`https://api.rawg.io/api/games/${slug}?key=${API_KEY}`);
         const data = await res.json();
-        console.log(data)
         return data;
     } catch (error) {
         console.error(error);

@@ -13,11 +13,18 @@ export default function GameMainInfo({gameDetails}: GameDetailsPageProps) {
             <div>
                 <div className='flex flex-row pb-2'>
                     <img className="h-5 mr-2" src="/images/Metacritic.svg" alt="Metacritic" />
-                    <h3 className="text-sm"><strong>Metacritic score:</strong> {gameDetails.metacritic}</h3>
+                    {gameDetails.metacritic == null
+                        ? <h3 className="text-sm"><strong>Metacritic score:</strong> N/A</h3>
+                        : <h3 className="text-sm"><strong>Metacritic score:</strong> {gameDetails.metacritic}</h3>
+
+                    }
                 </div>
                 <div className='flex flex-row pb-2'>
                     <img className="h-5 mr-2" src="/images/clock.svg" alt="Metacritic" />
-                    <h3><strong>Playtime:</strong> ≈ {gameDetails.playtime} hours</h3>
+                    {gameDetails.playtime == 0
+                        ? <h3 className="text-sm"><strong>Playtime:</strong> ≈ No data yet</h3>
+                        : <h3 className="text-sm"><strong>Playtime:</strong> ≈ {gameDetails.playtime} hours</h3>
+                    }
                 </div>
             </div>
         </div>

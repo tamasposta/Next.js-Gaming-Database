@@ -1,7 +1,7 @@
 export type Game = {
     name: string,
     background_image: string,
-    metacritic: number,
+    metacritic: number | null,
     released: string,
     slug: string
 }

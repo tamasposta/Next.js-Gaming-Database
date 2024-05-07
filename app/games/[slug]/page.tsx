@@ -3,7 +3,6 @@ import Gallery from '../../components/gamepage/Gallery';
 import GameMainImages from '../../components/gamepage/GameMainImages';
 import GameMainInfo from '../../components/gamepage/GameMainInfo';
 import GameDetails from '../../components/gamepage/GameDetails';
-import { Game, GameDetailsPageProps } from '../../types/GameDetails.types';
 
 export default async function GameDetailsPage({ params }) {
 
