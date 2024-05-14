@@ -1,5 +1,6 @@
 import cheerio from 'cheerio';
 import { GameDetailsPageProps } from '../../types/GameDetails.types';
+import Image from 'next/image';
 
 export default function GameDescription({ gameDetails }: GameDetailsPageProps) {
     const htmlString = gameDetails.description;
@@ -20,11 +21,13 @@ export default function GameDescription({ gameDetails }: GameDetailsPageProps) {
                 <div className='grid grid-cols-6 max-lg:grid-cols-8 max-md:grid-cols-3 pt-5'>{gameDetails.platforms.map((platform: any) => {
                     const platformIcon = `/images/platform-icons/${platform.platform.slug}.svg`;
                     return <div>
-                        <img
+                        <Image
                             className="w-14"
                             src={platformIcon}
                             alt={platform.platform.name}
                             title={platform.platform.name}
+                            width="200"
+                            height="200"
                         />
                     </div>
                 })}

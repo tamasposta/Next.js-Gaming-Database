@@ -1,7 +1,9 @@
+'use client'
 import Link from 'next/link';
 import { GamesProps } from '../types/Games.types';
+import Image from 'next/image';
 
-export default async function Card({ game }: GamesProps) {
+export default function Card({ game }: GamesProps) {
 
     return (
         <div className="bg-neutral rounded-md hover:outline hover:outline-2 hover:outline-neutral-content outline outline-neutral">
@@ -12,14 +14,14 @@ export default async function Card({ game }: GamesProps) {
                         className="text-lg font-semibold text-center"
                         title={game.name}
                     >
-                        {game.name.length > 25
-                            ? game.name.slice(0, 25) + "..."
+                        {game.name.length > 24
+                            ? game.name.slice(0, 24) + "..."
                             : game.name
                         }
                     </h2>
                 </div>
                 <div className='flex flex-row'>
-                    <img className="w-[20px] mr-2" src="/images/Metacritic.svg" alt="Metacritic" />
+                    <Image className="w-[20px] mr-2" src="/images/Metacritic.svg" width="20" height="20" alt="Metacritic" />
                     {game.metacritic == null
                         ? <h3 className="text-sm">Metacritic score: N/A</h3>
                         : <h3 className="text-sm">Metacritic score: {game.metacritic}</h3>

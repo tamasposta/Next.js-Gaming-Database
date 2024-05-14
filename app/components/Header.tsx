@@ -1,6 +1,7 @@
 'use client'
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -13,7 +14,7 @@ type NavigationItem = {
 
 const navigation: NavigationItem[] = [
     { name: 'Homepage', href: '/', current: true },
-    { name: 'My Games', href: '/games', current: false },
+    // { name: 'My Games', href: '/games', current: false },
 ]
 
 function classNames(...classes: string[]) {
@@ -51,10 +52,12 @@ const Header = () => {
                             </div>
                             <div className="flex flex-1 max-sm:w-1/3 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <Link href="/"><img
+                                    <Link href="/"><Image
                                         className="h-10 w-auto"
                                         src="/gaming-database-logo.svg"
                                         alt="Gaming Database logo"
+                                        width="200"
+                                        height="200"
                                     /></Link>
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
