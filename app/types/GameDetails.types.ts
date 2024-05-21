@@ -9,23 +9,32 @@ type Requirements = {
     recommended: string;
 }
 
+type Rating = {
+    id: number;
+    title: string;
+    count: number;
+    percent: number;
+}
+
 export type Game = {
     name?: string,
-    slug?: string;
+    slug: string;
     metacritic?: number,
     released?: string,
     playtime?: number,
     description?: string;
-    website?: string;
+    website?: string | undefined;
     background_image?: string,
     background_image_additional?: string,
     platforms?: {
-        name: string;
-        platform: Platform;
-        requirements: Requirements;
-    }[];
+        name: string | undefined;
+        platform: Platform | undefined;
+        requirements: Requirements | undefined;
+    }[] | undefined;
+    ratings?: Rating[] | undefined;
+
 }
 
 export type GameDetailsPageProps = {
-    gameDetails: Game
+    gameDetails: Game,
 }

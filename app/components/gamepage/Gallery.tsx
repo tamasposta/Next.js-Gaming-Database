@@ -5,14 +5,21 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css"
 import { Game } from "../../types/GameDetails.types";
 
+type GameScreenshots = {
+    image: string,
+    original: string,
+    thumbnail: string
+};
+
 const Gallery = ({ slug }: Game) => {
-    const [formattedScreenshots, setFormattedScreenshots] = useState(null);
+    const [formattedScreenshots, setFormattedScreenshots] = useState<GameScreenshots[] | null>(null);
 
     useEffect(() => {
         const asyncWrapper = async () => {
-            const gameScreenshots = await getGameScreenshots(slug);
+            const gameScreenshots: GameScreenshots[] = await getGameScreenshots(slug);
             if (gameScreenshots) {
-                const formattedScreenshotsTmp = gameScreenshots.map((image) => ({
+                const formattedScreenshotsTmp: GameScreenshots[] = gameScreenshots.map((image) => ({
+                    image: image.image,
                     original: image.image,
                     thumbnail: image.image
                 }));
@@ -20,7 +27,7 @@ const Gallery = ({ slug }: Game) => {
             }
         }
         asyncWrapper();
-    }, []);
+    });
 
     return (
         <>
@@ -36,5 +43,3 @@ const Gallery = ({ slug }: Game) => {
 };
 
 export default Gallery;
-
-// ITT TÍPUSOK NEM JÓK

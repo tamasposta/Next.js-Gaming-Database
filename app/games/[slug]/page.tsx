@@ -3,8 +3,9 @@ import Gallery from '../../components/gamepage/Gallery';
 import GameMainImages from '../../components/gamepage/GameMainImages';
 import GameMainInfo from '../../components/gamepage/GameMainInfo';
 import GameDetails from '../../components/gamepage/GameDetails';
+import Rating from '../../components/gamepage/Rating';
 
-export default async function GameDetailsPage({ params }) {
+export default async function GameDetailsPage({ params }: any) {
 
   const gameDetails = await getGameDetails(params.slug);
 
@@ -13,9 +14,8 @@ export default async function GameDetailsPage({ params }) {
       <GameMainInfo gameDetails={gameDetails} />
       <GameMainImages gameDetails={gameDetails} />
       <GameDetails gameDetails={gameDetails} />
+      <Rating gameDetails={gameDetails} />
       <Gallery slug={gameDetails.slug} />
     </div>
   )
 }
-
-// ITT SEM JÓK MÉG A TÍPUSOK

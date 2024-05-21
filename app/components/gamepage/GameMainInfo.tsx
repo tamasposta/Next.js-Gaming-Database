@@ -10,6 +10,14 @@ export default function GameMainInfo({gameDetails}: GameDetailsPageProps) {
                     ? (<h2 className='text-xl text-secondary'>Release date: {gameDetails.released}</h2>)
                     : (<h2 className='text-xl'>TBA</h2>)
                 }
+                <div className="flex flex-row items-center pt-2">
+                    <Image className='pr-2 cursor-pointer' alt="Add to favorite" src="/star-none.svg" width="30" height="30" />
+                    <p>(Add to favorite)</p>
+                </div>
+                {/* <div className="flex flex-row items-end">
+                    <Image className='pr-2 cursor-pointer' alt="Remove from favorite" src="/star.svg" width="30" height="30" />
+                    <p>(Remove from favorite)</p>
+                </div> */}
             </div>
             <div>
                 <div className='flex flex-row pb-2'>
