@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import 'tailwindcss'
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import "tailwindcss";
+import Header from "./components/header";
+import Footer from "./components/footer";
 
-const poppins = Poppins({ 
-  weight: [ "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
   subsets: ["latin"],
-  variable: "--poppins-font", 
+  variable: "--poppins-font",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +25,9 @@ export default function RootLayout({
   return (
     <html data-theme="dark" lang="en">
       <body className={poppins.className}>
-        <Header></Header>
+        <Header />
         <main>{children}</main>
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   );
