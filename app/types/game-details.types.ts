@@ -1,8 +1,16 @@
-type Platform = {
+export type Platform = {
   id: number;
   slug: string;
   name: string;
 };
+
+export type Platforms =
+  | {
+      name: string | undefined;
+      platform: Platform | undefined;
+      requirements: Requirements | undefined;
+    }[]
+  | undefined;
 
 type Requirements = {
   minimum: string;
@@ -23,16 +31,10 @@ export type Game = {
   released?: string;
   playtime?: number;
   description?: string;
-  website?: string | undefined;
+  website: string | undefined;
   background_image?: string;
   background_image_additional?: string;
-  platforms?:
-    | {
-        name: string | undefined;
-        platform: Platform | undefined;
-        requirements: Requirements | undefined;
-      }[]
-    | undefined;
+  platforms: Platforms;
   ratings?: Rating[] | undefined;
   rating?: number;
 };

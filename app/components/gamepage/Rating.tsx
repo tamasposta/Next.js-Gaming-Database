@@ -1,4 +1,6 @@
-import { Game, Rating, RatingColors } from "../../types/game-details.types";
+import { Game, RatingColors } from "../../types/game-details.types";
+
+// Itt nincsenek meg a típusok
 
 export default function Rating({ rating, ratings }: Game) {
   const ratingColors: RatingColors = {
@@ -13,7 +15,7 @@ export default function Rating({ rating, ratings }: Game) {
       <h3 className="text-2xl text-secondary">
         Rating: <span className="text-xl text-primary">{rating}/5</span>
       </h3>
-      {ratings.map(({ title, count }: Rating, index: number) => {
+      {ratings.map(({ title, count }, index: number) => {
         const color = ratingColors[title] || "white";
         return (
           <div className="pt-3" key={index}>
@@ -25,7 +27,7 @@ export default function Rating({ rating, ratings }: Game) {
         );
       })}
       <div className="flex flex-row flex-nowrap mt-2">
-        {ratings.map(({ title, percent }: Rating, index: number) => {
+        {ratings.map(({ title, percent }, index: number) => {
           const background = ratingColors[title] || "white";
           return (
             <div key={index} style={{ width: `${percent}%` }}>

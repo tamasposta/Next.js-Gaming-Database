@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { GameScreenshots } from "../types/game-screnshots.types";
 import { getGameScreenshots } from "../utils/requests";
 
+// Itt sincsenek meg a típusok
+
 export default function useGallery({ slug }) {
   const [formattedScreenshots, setFormattedScreenshots] = useState<
     GameScreenshots[] | null

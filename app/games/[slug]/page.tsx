@@ -4,8 +4,9 @@ import GameMainImages from "../../components/gamepage/game-main-images";
 import GameMainInfo from "../../components/gamepage/game-main-info";
 import GameDetails from "../../components/gamepage/game-details";
 import Rating from "../../components/gamepage/rating";
+import { PageProps } from "../../types/page-props.types";
 
-export default async function GameDetailsPage({ params }: any) {
+export default async function GameDetailsPage({ params }: PageProps) {
   const gameDetails = await getGameDetails(params.slug);
 
   return (
