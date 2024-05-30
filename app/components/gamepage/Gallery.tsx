@@ -1,10 +1,10 @@
 "use client";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { Game } from "../../types/game-details.types";
+import { GameDetails } from "../../types/game-details.types";
 import useGallery from "../../hooks/use-gallery";
 
-export default function Gallery({ slug }: Game) {
+export default function Gallery({ slug }: GameDetails) {
   const { formattedScreenshots } = useGallery({ slug });
 
   return (

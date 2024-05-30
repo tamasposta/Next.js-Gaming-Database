@@ -1,10 +1,15 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import { Game, HandleSortingParams } from "../types/games.types";
+import {
+  Game,
+  HandleSortingParams,
+  UseSearchResultsParams,
+} from "../types/games.types";
 
-// Itt sincsenek meg a típusok
-
-export default function useSearchResults({ games, searchText }) {
+export default function useSearchResults({
+  games,
+  searchText,
+}: UseSearchResultsParams) {
   const [filteredGames, setFilteredGames] = useState<Game[]>(games);
   const [order, setOrder] = useState<string>("ASC");
 

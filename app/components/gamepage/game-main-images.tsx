@@ -1,9 +1,9 @@
-import { Game } from "../../types/game-details.types";
+import { GameDetails } from "../../types/game-details.types";
 
 export default function GameMainImages({
   background_image,
   background_image_additional,
-}: Game) {
+}: GameDetails) {
   return (
     <div className="flex flex-nowrap pb-10 gap-4 max-sm:flex-wrap">
       <div

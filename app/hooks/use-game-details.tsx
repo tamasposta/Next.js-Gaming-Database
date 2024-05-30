@@ -1,19 +1,21 @@
 "use client";
 import cheerio from "cheerio";
-import { Platform } from "../types/game-details.types";
+import { GameDetails, Platforms } from "../types/game-details.types";
 
-// Itt sincsenek meg a típusok
-
-export default function useGameDetails({ description, platforms }) {
+export default function useGameDetails({
+  description,
+  platforms,
+}: GameDetails) {
   const htmlString = description;
   const $ = cheerio.load(htmlString);
   $('p:contains("Español")').remove();
   const modifiedGameDescription = $("body").html();
 
   const isPlatformPc =
-    platforms && platforms.find((platform: Platform) => (platform.name = "PC"));
+    platforms &&
+    platforms.find((platform: Platforms) => (platform.name = "PC"));
   const pcPlatform = platforms.find(
-    (platform: any) => platform.platform.name === "PC"
+    (element: Platforms) => element?.platform?.name === "PC"
   );
   const reqMinimum = pcPlatform?.requirements?.minimum;
   const reqRecommended = pcPlatform?.requirements?.recommended;

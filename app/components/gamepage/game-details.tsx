@@ -1,13 +1,17 @@
 "use client";
 import Image from "next/image";
-import { Game } from "../../types/game-details.types";
+import { GameDetails, Platforms } from "../../types/game-details.types";
 import useGameDetails from "../../hooks/use-game-details";
 
-// Itt nincsenek meg a típusok
-
-export default function GameDetails({ description, platforms, website }: Game) {
+export default function GameDetails({
+  description,
+  platforms,
+  website,
+}: GameDetails) {
   const { modifiedGameDescription, isPlatformPc, reqMinimum, reqRecommended } =
     useGameDetails({ description, platforms });
+
+  const websiteLength = website?.length ?? 0;
 
   return (
     <div className="flex flex-nowrap pb-10 gap-4 max-md:flex-wrap">
@@ -18,15 +22,15 @@ export default function GameDetails({ description, platforms, website }: Game) {
       <div className="md:w-1/2">
         <h2 className="text-2xl text-secondary">Platforms: </h2>
         <div className="grid grid-cols-6 max-lg:grid-cols-8 max-md:grid-cols-3 pt-5">
-          {platforms.map(({ platform }) => {
-            const platformIcon = `/images/platform-icons/${platform.slug}.svg`;
+          {platforms.map((element: Platforms) => {
+            const platformIcon = `/images/platform-icons/${element?.platform?.slug}.svg`;
             return (
-              <div key={platform.id}>
+              <div key={element?.platform?.id}>
                 <Image
                   className="w-14"
                   src={platformIcon}
-                  alt={platform.name}
-                  title={platform.name}
+                  alt={element?.platform?.name ?? ""}
+                  title={element?.platform?.name}
                   width="200"
                   height="200"
                 />
@@ -51,7 +55,7 @@ export default function GameDetails({ description, platforms, website }: Game) {
           ) : (
             <div>No system requirements data.</div>
           )}
-          {website.length > 0 && (
+          {websiteLength > 0 && (
             <div className="pt-10">
               <h3 className="text-2xl text-secondary">Website:</h3>
               <a className="underline" href={website} target="_blank">

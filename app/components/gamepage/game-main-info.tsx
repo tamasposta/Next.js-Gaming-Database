@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { Game } from "../../types/game-details.types";
+import { GameDetails } from "../../types/game-details.types";
 
 export default function GameMainInfo({
   name,
   released,
   metacritic,
   playtime,
-}: Game) {
+}: GameDetails) {
   return (
     <div className="flex flex-row pb-10 justify-between flex-wrap gap-2">
       <div>

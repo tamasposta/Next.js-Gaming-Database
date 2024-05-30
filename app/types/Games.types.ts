@@ -12,6 +12,11 @@ export type SearchResultsProps = {
   searchText: string;
 };
 
+export type UseSearchResultsParams = {
+  games: Game[];
+  searchText: string;
+};
+
 export type HandleSortingParams = {
   sortingFunction: (
     games: any[],
