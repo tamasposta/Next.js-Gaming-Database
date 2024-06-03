@@ -1,4 +1,4 @@
-import { SortingGame, SortingNum } from "../types/games.types";
+import type { SortingGame, SortingNum } from "../types/games.types";
 
 export const sortingFunctions = {
   sorting: (

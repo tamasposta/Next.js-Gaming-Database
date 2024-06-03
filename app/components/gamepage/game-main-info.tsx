@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { GameDetails } from "../../types/game-details.types";
+import type { GameDetails } from "../../types/game-details.types";
 
 export default function GameMainInfo({
   name,

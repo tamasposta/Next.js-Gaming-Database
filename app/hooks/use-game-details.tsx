@@ -1,6 +1,6 @@
 "use client";
 import cheerio from "cheerio";
-import { GameDetails, Platforms } from "../types/game-details.types";
+import type { GameDetails, Platforms } from "../types/game-details.types";
 
 export default function useGameDetails({
   description,

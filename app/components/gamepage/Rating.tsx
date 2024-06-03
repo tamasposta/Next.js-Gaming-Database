@@ -1,10 +1,8 @@
-import {
+import type {
   GameDetails,
   Rating,
   RatingColors,
 } from "../../types/game-details.types";
-
-// Itt nincsenek meg a típusok
 
 export default function Rating({ rating, ratings }: GameDetails) {
   const ratingColors: RatingColors = {

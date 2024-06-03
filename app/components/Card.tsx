@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Game } from "../types/games.types";
+import type { Game } from "../types/games.types";
 import Image from "next/image";
 
 export default function Card({

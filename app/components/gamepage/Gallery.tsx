@@ -1,7 +1,7 @@
 "use client";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { Gallery } from "../../types/game-details.types";
+import type { Gallery } from "../../types/game-details.types";
 import useGallery from "../../hooks/use-gallery";
 
 export default function Gallery({ slug }: Gallery) {

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import {
+import type {
   Game,
   HandleSortingParams,
   UseSearchResultsParams,

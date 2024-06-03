@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import { GameScreenshots } from "../types/game-screnshots.types";
+import type { GameScreenshots } from "../types/game-screnshots.types";
 import { getGameScreenshots } from "../utils/requests";
-import { GalleryPageProps } from "../types/gallery-page-props.types";
-
-// Itt sincsenek meg a típusok
+import type { GalleryPageProps } from "../types/gallery-page-props.types";
 
 export default function useGallery({ slug }: GalleryPageProps) {
   const [formattedScreenshots, setFormattedScreenshots] = useState<

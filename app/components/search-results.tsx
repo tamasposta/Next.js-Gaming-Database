@@ -1,7 +1,7 @@
 "use client";
 import Card from "./card";
 import { sortingFunctions } from "../utils/sorting";
-import { Game, SearchResultsProps } from "../types/games.types";
+import type { Game, SearchResultsProps } from "../types/games.types";
 import useSearchResults from "../hooks/use-search-results";
 
 export default function SearchResults({

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { GameDetails, Platforms } from "../../types/game-details.types";
+import type { GameDetails, Platforms } from "../../types/game-details.types";
 import useGameDetails from "../../hooks/use-game-details";
 
 export default function GameDetails({
