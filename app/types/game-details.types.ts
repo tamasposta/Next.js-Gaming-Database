@@ -10,16 +10,16 @@ export type Platforms = {
   requirements?: Requirements;
 };
 
-type Requirements = {
+export type Requirements = {
   minimum: string;
   recommended: string;
 };
 
 export type Rating = {
   id?: number;
-  title?: string;
+  title: string;
   count?: number;
-  percent?: number;
+  percent: number;
 };
 
 export type GameDetails = {
@@ -28,13 +28,17 @@ export type GameDetails = {
   metacritic?: number;
   released?: string;
   playtime?: number;
-  description?: string;
+  description: string | Buffer;
   website?: string;
   background_image?: string;
   background_image_additional?: string;
   platforms: Platforms[];
   ratings?: Rating[];
   rating?: number;
+};
+
+export type Gallery = {
+  slug: string;
 };
 
 export type GameDetailsPageProps = {
@@ -46,4 +50,5 @@ export type RatingColors = {
   recommended: string;
   meh: string;
   skip: string;
+  [key: string]: string | undefined;
 };

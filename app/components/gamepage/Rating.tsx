@@ -31,7 +31,7 @@ export default function Rating({ rating, ratings }: GameDetails) {
         );
       })}
       <div className="flex flex-row flex-nowrap mt-2">
-        {ratings.map(({ title, percent }: Rating, index: number) => {
+        {ratings?.map(({ title, percent }: Rating, index: number) => {
           const background = ratingColors[title] || "white";
           return (
             <div key={index} style={{ width: `${percent}%` }}>

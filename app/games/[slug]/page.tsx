@@ -16,18 +16,27 @@ export default async function GameDetailsPage({ params }: PageProps) {
         released={gameDetails.released}
         metacritic={gameDetails.metacritic}
         playtime={gameDetails.playtime}
+        platforms={[]}
+        description={""}
       />
       <GameMainImages
         background_image={gameDetails.background_image}
         background_image_additional={gameDetails.background_image_additional}
+        platforms={[]}
+        description={""}
       />
       <GameDetails
         description={gameDetails.description}
         platforms={gameDetails.platforms}
         website={gameDetails.website}
       />
-      <Rating rating={gameDetails.rating} ratings={gameDetails.ratings} />
-      <Gallery slug={gameDetails.slug} />
+      <Rating
+        rating={gameDetails.rating}
+        ratings={gameDetails.ratings}
+        platforms={[]}
+        description={""}
+      />
+      <Gallery slug={gameDetails.slug} platforms={[]} description={""} />
     </div>
   );
 }

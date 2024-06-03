@@ -7,11 +7,6 @@ export type Game = {
   slug: string;
 };
 
-export type SearchResultsProps = {
-  games: Game[];
-  searchText: string;
-};
-
 export type UseSearchResultsParams = {
   games: Game[];
   searchText: string;
@@ -26,4 +21,17 @@ export type HandleSortingParams = {
     col: string
   ) => void;
   col: string;
+};
+
+export type SortingGame = {
+  [key: string]: string;
+};
+
+export type SortingNum = {
+  [key: string]: number;
+};
+
+export type SearchResultsProps = {
+  games: Game[];
+  searchText: string;
 };
