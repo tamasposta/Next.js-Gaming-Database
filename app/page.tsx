@@ -12,26 +12,27 @@ export default async function HomePage() {
         <h2 className="text-xl text-secondary mb-10">Popular games in 2024</h2>
         <div>
           <div className="grid grid-cols:1 sm:grid-cols:2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-cols-max gap-6 items-start auto-rows-fr">
-            {games.map(
-              ({
-                id,
-                name,
-                background_image,
-                metacritic,
-                released,
-                slug,
-              }: Game) => (
-                <Card
-                  key={id}
-                  id={id}
-                  name={name}
-                  background_image={background_image}
-                  metacritic={metacritic}
-                  released={released}
-                  slug={slug}
-                />
-              )
-            )}
+            {games &&
+              games.map(
+                ({
+                  id,
+                  name,
+                  background_image,
+                  metacritic,
+                  released,
+                  slug,
+                }: Game) => (
+                  <Card
+                    key={id}
+                    id={id}
+                    name={name}
+                    background_image={background_image}
+                    metacritic={metacritic}
+                    released={released}
+                    slug={slug}
+                  />
+                )
+              )}
           </div>
         </div>
       </div>

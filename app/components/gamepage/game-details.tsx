@@ -22,21 +22,22 @@ export default function GameDetails({
       <div className="md:w-1/2">
         <h2 className="text-2xl text-secondary">Platforms: </h2>
         <div className="grid grid-cols-6 max-lg:grid-cols-8 max-md:grid-cols-3 pt-5">
-          {platforms.map((element: Platforms) => {
-            const platformIcon = `/images/platform-icons/${element?.platform?.slug}.svg`;
-            return (
-              <div key={element?.platform?.id}>
-                <Image
-                  className="w-14"
-                  src={platformIcon}
-                  alt={element?.platform?.name ?? ""}
-                  title={element?.platform?.name}
-                  width="200"
-                  height="200"
-                />
-              </div>
-            );
-          })}
+          {platforms &&
+            platforms.map((element: Platforms) => {
+              const platformIcon = `/images/platform-icons/${element?.platform?.slug}.svg`;
+              return (
+                <div key={element?.platform?.id}>
+                  <Image
+                    className="w-14"
+                    src={platformIcon}
+                    alt={element?.platform?.name ?? ""}
+                    title={element?.platform?.name}
+                    width="200"
+                    height="200"
+                  />
+                </div>
+              );
+            })}
         </div>
         <div>
           <h2 className="text-2xl text-secondary pt-10">
