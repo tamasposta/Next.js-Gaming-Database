@@ -5,7 +5,8 @@ export const dynamic = "force-dynamic";
 export const getGames = async () => {
   try {
     const res = await fetch(
-      `https://api.rawg.io/api/games?key=${API_KEY}&genres=action&ordering=-added&page_size=24&dates=2024-01-01,2024-12-31`
+      //`https://api.rawg.io/api/games?key=${API_KEY}&genres=action&ordering=-added&page_size=24&dates=2024-01-01,2024-12-31`
+      `https://api.rawg.io/api/games?key=45bee80add714140a0f717487ae33a2f&genres=action&ordering=-added&page_size=24&dates=2024-01-01,2024-12-31`
     );
     const data = await res.json();
     return data.results;
