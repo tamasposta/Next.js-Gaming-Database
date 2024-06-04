@@ -2,7 +2,7 @@ import Card from "./components/card";
 import { getGames } from "./utils/requests";
 import { Game } from "./types/games.types";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export default async function HomePage() {
   const games: Game[] = await getGames();
