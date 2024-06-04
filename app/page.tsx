@@ -12,7 +12,7 @@ export default async function HomePage() {
         <h2 className="text-xl text-secondary mb-10">Popular games in 2024</h2>
         <div>
           <div className="grid grid-cols:1 sm:grid-cols:2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-cols-max gap-6 items-start auto-rows-fr">
-            {games.map(
+            {games?.map(
               ({
                 id,
                 name,
