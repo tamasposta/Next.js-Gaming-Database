@@ -4,7 +4,6 @@ import { Game } from "./types/games.types";
 
 export default async function HomePage() {
   const games: Game[] = await getGames();
-  console.log("Games: ", games);
 
   return (
     <>
