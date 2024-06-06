@@ -28,7 +28,7 @@ export type GameDetails = {
   metacritic?: number;
   released?: string;
   playtime?: number;
-  description: string | Buffer;
+  description?: string | Buffer;
   website?: string;
   background_image?: string;
   background_image_additional?: string;

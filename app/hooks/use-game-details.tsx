@@ -3,7 +3,7 @@ import cheerio from "cheerio";
 import type { GameDetails, Platforms } from "../types/game-details.types";
 
 export default function useGameDetails({
-  description,
+  description = "",
   platforms,
 }: GameDetails) {
   const htmlString = description;
@@ -14,7 +14,7 @@ export default function useGameDetails({
   const isPlatformPc =
     platforms &&
     platforms.find((platform: Platforms) => (platform.name = "PC"));
-  const pcPlatform = platforms.find(
+  const pcPlatform = platforms?.find(
     (element: Platforms) => element?.platform?.name === "PC"
   );
   const reqMinimum = pcPlatform?.requirements?.minimum;
