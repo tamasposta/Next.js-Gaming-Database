@@ -1,5 +1,4 @@
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-console.log("API KEY:", API_KEY);
 
 export const getGames = async () => {
   try {
