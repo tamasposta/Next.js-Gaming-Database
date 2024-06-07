@@ -84,3 +84,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Typescript](https://www.typescriptlang.org/) for the language
 
 ## Screenshots
+
+![Gaming-database-pc](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/39b9800f-58db-4d59-b7bc-cd8c515c1d4d)
+
+![Gaming-database-mobile-tablet](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/1cb9534e-b225-45e2-b3a0-de1a5fcf9b22)
+
