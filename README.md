@@ -16,7 +16,6 @@ Video Game Database App is a Next.js-based application that provides information
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgements](#acknowledgements)
 - [Screenshots](#screenshots)
 
@@ -71,9 +70,6 @@ Contributions are welcome! Please fork this repository and create a pull request
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Open a pull request
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
