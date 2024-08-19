@@ -26,7 +26,7 @@ export const getSearchedGames = async (query: string) => {
   }
 };
 
-export const getGameDetails = async (slug: string): Promise<any | null> => {
+export const getGameDetails = async (slug: string) => {
   try {
     const res = await fetch(
       `https://api.rawg.io/api/games/${slug}?key=${API_KEY}`
