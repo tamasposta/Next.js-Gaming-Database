@@ -51,9 +51,7 @@ export default function Card({
         </div>
         <h4 className="text-sm">Release date: {released}</h4>
         <Link href={`/games/${slug}`}>
-          <button className="btn btn-outline btn-primary btn-sm">
-            See details
-          </button>
+          <a className="btn btn-outline btn-primary btn-sm">See details</a>
         </Link>
       </div>
     </div>
