@@ -7,16 +7,16 @@ import Rating from "../../components/gamepage/rating";
 import type { PageProps } from "../../types/page-props.types";
 
 export default async function GameDetailsPage({ params }: PageProps) {
-  const gameDetails = await getGameDetails(params.slug);
-
-  console.log(gameDetails);
+  const slug = params.slug || "stalker-2"; // Replace 'specific-slug' with a known good slug
+  console.log("Fetching details for slug:", slug); // Log the slug
+  const gameDetails = await getGameDetails(slug);
 
   if (!gameDetails) {
-    // Ha a `gameDetails` null vagy undefined, akkor kezelhetjük ezt az állapotot.
+    console.log("No game details found for slug:", slug);
     return (
       <div className="text-center mt-10">
         <h1 className="text-2xl">Game not found</h1>
-        <p>Sorry, we couldn't load the game details.</p>
+        <p>Sorry, we couldn&apos;t load the game details.</p>
       </div>
     );
   }

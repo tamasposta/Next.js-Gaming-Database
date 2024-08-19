@@ -31,10 +31,12 @@ export const getGameDetails = async (slug: string) => {
     const res = await fetch(
       `https://api.rawg.io/api/games/${slug}?key=${API_KEY}`
     );
+    console.log(`Fetch response status: ${res.status}`);
     const data = await res.json();
+    console.log(`Fetched game details:`, data);
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching game details:", error);
     return null;
   }
 };
