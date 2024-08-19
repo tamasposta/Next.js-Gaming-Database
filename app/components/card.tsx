@@ -50,9 +50,15 @@ export default function Card({
           )}
         </div>
         <h4 className="text-sm">Release date: {released}</h4>
-        <Link href={`/games/${slug}`}>
-          <a className="btn btn-outline btn-primary btn-sm">See details</a>
+        <Link
+          href={`/games/${slug}`}
+          className="btn btn-outline btn-primary btn-sm"
+        >
+          See details
         </Link>
+        {/* <Link href={`/games/${slug}`}>
+          <a className="btn btn-outline btn-primary btn-sm">See details</a>
+        </Link> */}
       </div>
     </div>
   );
