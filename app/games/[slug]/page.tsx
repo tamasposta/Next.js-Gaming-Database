@@ -9,6 +9,8 @@ import type { PageProps } from "../../types/page-props.types";
 export default async function GameDetailsPage({ params }: PageProps) {
   const gameDetails = await getGameDetails(params.slug);
 
+  console.log(gameDetails);
+
   if (!gameDetails) {
     // Ha a `gameDetails` null vagy undefined, akkor kezelhetjük ezt az állapotot.
     return (
