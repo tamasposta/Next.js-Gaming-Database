@@ -39,7 +39,7 @@ Video Game Database App is a Next.js-based application that provides information
 1. Obtain an API key from [RAWG](https://rawg.io/apidocs).
 2. Create a `.env.local` file in the root directory and add your API key:
    ```plaintext
-   RAWG_API_KEY=your_api_key
+   NEXT_PUBLIC_API_KEY=your_api_key
    ```
 3. Start the development server
    ```bash

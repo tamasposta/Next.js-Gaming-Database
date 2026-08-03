@@ -24,7 +24,7 @@ export default function useGallery({ slug }: GalleryPageProps) {
       }
     };
     asyncWrapper();
-  });
+  }, [slug]);
 
   return { formattedScreenshots };
 }
