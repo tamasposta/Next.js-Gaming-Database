@@ -36,10 +36,11 @@ Video Game Database App is a Next.js-based application that provides information
 
 ## Usage
 
-1. Obtain an API key from [RAWG](https://rawg.io/apidocs).
-2. Create a `.env.local` file in the root directory and add your API key:
+1. Create Twitch developer credentials for [IGDB](https://api-docs.igdb.com/#account-creation).
+2. Create a `.env.local` file in the root directory and add your credentials:
    ```plaintext
-   NEXT_PUBLIC_API_KEY=your_api_key
+   IGDB_CLIENT_ID=your_client_id
+   IGDB_CLIENT_SECRET=your_client_secret
    ```
 3. Start the development server
    ```bash

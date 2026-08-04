@@ -13,7 +13,7 @@ export default function useGameDetails({
 
   const isPlatformPc =
     platforms &&
-    platforms.find((platform: Platforms) => (platform.name = "PC"));
+    platforms.find((platform: Platforms) => platform?.platform?.name === "PC");
   const pcPlatform = platforms?.find(
     (element: Platforms) => element?.platform?.name === "PC"
   );

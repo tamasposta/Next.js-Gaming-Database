@@ -1,4 +1,4 @@
-import { getGameDetails } from "../../utils/requests";
+import { getGameDetails, getGameScreenshots } from "../../utils/requests";
 import Gallery from "../../components/gamepage/gallery";
 import GameMainImages from "../../components/gamepage/game-main-images";
 import GameMainInfo from "../../components/gamepage/game-main-info";
@@ -7,12 +7,11 @@ import Rating from "../../components/gamepage/rating";
 import type { PageProps } from "../../types/page-props.types";
 
 export default async function GameDetailsPage({ params }: PageProps) {
-  const slug = params.slug || "stalker-2"; // Replace 'specific-slug' with a known good slug
-  console.log("Fetching details for slug:", slug); // Log the slug
+  const slug = params.slug || "stalker-2";
   const gameDetails = await getGameDetails(slug);
+  const screenshots = await getGameScreenshots(slug);
 
   if (!gameDetails) {
-    console.log("No game details found for slug:", slug);
     return (
       <div className="text-center mt-10">
         <h1 className="text-2xl">Game not found</h1>
@@ -31,24 +30,30 @@ export default async function GameDetailsPage({ params }: PageProps) {
         platforms={[]}
         description={""}
       />
-      <GameMainImages
-        background_image={gameDetails.background_image}
-        background_image_additional={gameDetails.background_image_additional}
-        platforms={[]}
-        description={""}
-      />
-      <GameDetails
-        description={gameDetails.description}
-        platforms={gameDetails.platforms}
-        website={gameDetails.website}
-      />
+      <div className="flex flex-col gap-8 md:flex-row md:items-start">
+        <div className="w-full md:w-1/2 lg:w-[30%]">
+          <GameMainImages
+            background_image={gameDetails.background_image}
+            background_image_additional={gameDetails.background_image_additional}
+            platforms={[]}
+            description={""}
+          />
+        </div>
+        <div className="w-full md:w-1/2 lg:w-[70%]">
+          <GameDetails
+            description={gameDetails.description}
+            platforms={gameDetails.platforms}
+            website={gameDetails.website}
+          />
+        </div>
+      </div>
       <Rating
         rating={gameDetails.rating}
         ratings={gameDetails.ratings}
         platforms={[]}
         description={""}
       />
-      <Gallery slug={gameDetails.slug} />
+      <Gallery images={screenshots} />
     </div>
   );
 }

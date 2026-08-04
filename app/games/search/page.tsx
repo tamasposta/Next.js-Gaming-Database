@@ -3,11 +3,11 @@ import { getSearchedGames } from "../../utils/requests";
 import type { SearchPageProps } from "../../types/search-page-props.types";
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const games = await getSearchedGames(searchParams.query);
+  const games = (await getSearchedGames(searchParams.query)) ?? [];
 
   return (
     <>
-      {games && <SearchResults games={games} searchText={searchParams.query} />}
+      <SearchResults games={games} searchText={searchParams.query} />
     </>
   );
 }

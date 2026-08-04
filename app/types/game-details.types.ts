@@ -25,7 +25,7 @@ export type Rating = {
 export type GameDetails = {
   name?: string;
   slug?: string;
-  metacritic?: number;
+  metacritic?: number | null;
   released?: string;
   playtime?: number;
   description?: string | Buffer;
@@ -38,7 +38,11 @@ export type GameDetails = {
 };
 
 export type Gallery = {
-  slug: string;
+  images: {
+    image: string;
+    original: string;
+    thumbnail: string;
+  }[] | null;
 };
 
 export type GameDetailsPageProps = {

@@ -13,7 +13,7 @@ export default function Card({
   return (
     <div className="bg-neutral rounded-md hover:outline hover:outline-2 hover:outline-neutral-content outline outline-neutral sm:w-[280px] h-full">
       <div
-        className="w-full h-[180px] max-sm:h-[220px] bg-cover bg-center rounded-t-md"
+        className="w-full aspect-[5/7] bg-cover bg-center rounded-t-md"
         style={{ backgroundImage: `url(${background_image})` }}
       ></div>
       <div className="flex flex-col pb-3 items-center gap-3">

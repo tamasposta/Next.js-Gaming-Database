@@ -14,12 +14,12 @@ export default function GameDetails({
   const websiteLength = website?.length ?? 0;
 
   return (
-    <div className="flex flex-nowrap pb-10 gap-4 max-md:flex-wrap">
+    <div className="flex flex-col gap-5">
       <div
-        className="text-justify md:w-1/2"
+        className="text-justify"
         dangerouslySetInnerHTML={{ __html: modifiedGameDescription || "" }}
       ></div>
-      <div className="md:w-1/2">
+      <div>
         <h2 className="text-2xl text-secondary">Platforms: </h2>
         <div className="grid grid-cols-6 max-lg:grid-cols-8 max-md:grid-cols-3 pt-5">
           {platforms &&
@@ -39,32 +39,32 @@ export default function GameDetails({
               );
             })}
         </div>
-        <div>
-          <h2 className="text-2xl text-secondary pt-10">
-            System requirements:{" "}
-          </h2>
-          {isPlatformPc ? (
-            <>
-              {!reqMinimum && !reqRecommended && (
-                <div>No system requirements data.</div>
-              )}
-              {reqMinimum && <div className="text-justify">{reqMinimum}</div>}
-              {reqRecommended && (
-                <div className="text-justify pt-5">{reqRecommended}</div>
-              )}
-            </>
-          ) : (
-            <div>No system requirements data.</div>
-          )}
-          {websiteLength > 0 && (
-            <div className="pt-10">
-              <h3 className="text-2xl text-secondary">Website:</h3>
-              <a className="underline" href={website} target="_blank">
-                {website}
-              </a>
-            </div>
-          )}
-        </div>
+      </div>
+      <div>
+        <h2 className="text-2xl text-secondary pt-10">
+          System requirements:{" "}
+        </h2>
+        {isPlatformPc ? (
+          <>
+            {!reqMinimum && !reqRecommended && (
+              <div>No system requirements data.</div>
+            )}
+            {reqMinimum && <div className="text-justify">{reqMinimum}</div>}
+            {reqRecommended && (
+              <div className="text-justify pt-5">{reqRecommended}</div>
+            )}
+          </>
+        ) : (
+          <div>No system requirements data.</div>
+        )}
+        {websiteLength > 0 && (
+          <div className="pt-10">
+            <h3 className="text-2xl text-secondary">Website:</h3>
+            <a className="underline text-wrap" href={website} target="_blank">
+              {website}
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
