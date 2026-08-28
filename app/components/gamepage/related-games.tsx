@@ -32,7 +32,7 @@ export default function RelatedGames({
           <h3 className="text-xl text-secondary font-semibold">
             Franchise: <span className="text-base-content">{collection.name}</span>
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {collection.games.map((game) => (
               <Link
                 key={game.id}
@@ -67,7 +67,7 @@ export default function RelatedGames({
           <h3 className="text-xl text-secondary font-semibold">
             DLCs & Expansions
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {dlcsAndExpansions.map((game) => (
               <Link
                 key={game.id}
@@ -102,7 +102,7 @@ export default function RelatedGames({
           <h3 className="text-xl text-secondary font-semibold">
             Similar Games You Might Like
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {similarGames.map((game) => (
               <Link
                 key={game.id}
