@@ -11,10 +11,8 @@ export default function Card({
   background_image,
 }: Game) {
   return (
-    <Link
-          href={`/games/${slug}`}
-          >
-    <div className="bg-neutral rounded-md hover:scale-105 transition-all duration-200 hover:outline hover:outline-2 hover:outline-neutral-content sm:w-[280px] h-full">
+    <Link href={`/games/${slug}`}>
+      <div className="bg-neutral rounded-md hover:scale-105 transition-all duration-200 hover:outline hover:outline-2 hover:outline-neutral-content sm:w-[280px] h-full">
       <div
         className="w-full aspect-[5/7] bg-cover bg-center rounded-t-md"
         style={{ backgroundImage: `url(${background_image})` }}

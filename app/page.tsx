@@ -26,7 +26,7 @@ export default async function HomePage() {
       <div className="flex flex-col items-center mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sm:my-20 max-sm:my-10 gap-8">
         <p className="text-center">
                     Welcome to Gaming Database, your ultimate destination for exploring the world of video games.
-                    Stay up-to-date with the latest releases, read reviews, and find your next favorite game. Whether you're a casual gamer or a hardcore enthusiast, Gaming Database has something for everyone.
+                    Stay up-to-date with the latest releases, read reviews, and find your next favorite game. Whether you&apos;re a casual gamer or a hardcore enthusiast, Gaming Database has something for everyone.
                 </p>
         <div className="w-full flex flex-col gap-2 items-start">
         <h1 className="text-3xl text-primary">Trending Games</h1>
