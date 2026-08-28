@@ -5,7 +5,7 @@ export default function GameMainInfo({
   name,
   released,
   metacritic,
-  playtime,
+  game_time_to_beats,
 }: GameDetails) {
   return (
     <div className="flex flex-row pb-10 justify-between flex-wrap gap-2">
@@ -57,15 +57,15 @@ export default function GameMainInfo({
             src="/images/clock.svg"
             width="20"
             height="20"
-            alt="Metacritic"
+            alt="Time to beat"
           />
-          {playtime == 0 ? (
+          {!game_time_to_beats || game_time_to_beats === 0 ? (
             <h3 className="text-sm">
-              <strong>Playtime:</strong> ≈ No data yet
+              <strong>Time to beat:</strong> ≈ No data yet
             </h3>
           ) : (
             <h3 className="text-sm">
-              <strong>Playtime:</strong> ≈ {playtime} hours
+              <strong>Time to beat:</strong> ≈ {game_time_to_beats} hours
             </h3>
           )}
         </div>

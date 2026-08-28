@@ -1,49 +1,55 @@
 import type {
   GameDetails,
-  Rating,
-  RatingColors,
 } from "../../types/game-details.types";
 
-export default function Rating({ rating, ratings }: GameDetails) {
-  const ratingColors: RatingColors = {
-    exceptional: "#00cdb8",
-    recommended: "#7480ff",
-    meh: "#ffbe00",
-    skip: "#ff5861",
+export default function Rating({ rating }: GameDetails) {
+  if (rating == null || rating === 0) {
+    return null;
+  }
+
+  // rating is a 1-5 score derived from IGDB total_rating (which is 0-100)
+  const percentage = Math.round(rating * 20);
+
+  // Dynamic color based on percentage
+  const getColor = (pct: number) => {
+    if (pct >= 85) return "#00cdb8"; // Exceptional / Teal
+    if (pct >= 70) return "#7480ff"; // Recommended / Blue
+    if (pct >= 50) return "#ffbe00"; // Meh / Yellow
+    return "#ff5861"; // Skip / Red
   };
+
+  const getLabel = (pct: number) => {
+    if (pct >= 85) return "Exceptional";
+    if (pct >= 70) return "Recommended";
+    if (pct >= 50) return "Meh";
+    return "Skip";
+  };
+
+  const color = getColor(percentage);
+  const label = getLabel(percentage);
 
   return (
     <div className="py-10">
-      <h3 className="text-2xl text-secondary">
-        Rating: <span className="text-xl text-primary">{rating}/5</span>
-      </h3>
-      {ratings &&
-        ratings?.map(({ title, count }: Rating, index: number) => {
-          const color = ratingColors[title] || "white";
-          return (
-            <div className="pt-3" key={index}>
-              <p>
-                <span style={{ color }}>{title.toUpperCase()}: </span>
-                <strong>{count}</strong>
-              </p>
-            </div>
-          );
-        })}
-      <div className="flex flex-row flex-nowrap mt-2">
-        {ratings &&
-          ratings?.map(({ title, percent }: Rating, index: number) => {
-            const background = ratingColors[title] || "white";
-            return (
-              <div key={index} style={{ width: `${percent}%` }}>
-                <button
-                  className="btn btn-primary border-0 rounded-none btn-sm text-xs w-full"
-                  style={{ background }}
-                >
-                  {Math.round(percent)}%
-                </button>
-              </div>
-            );
-          })}
+      <div className="flex items-center justify-between mb-2">
+        <h3 className="text-2xl text-secondary">
+          User Rating: {" "}
+          <span className="text-sm opacity-80" style={{ color }}>
+            ({percentage}% - {label})
+          </span>
+        </h3>
+      </div>
+
+      {/* Progress Bar Container */}
+      <div className="w-full bg-neutral rounded-full h-6 overflow-hidden p-0.5 border border-neutral/50 shadow-inner relative">
+        <div
+          className="h-full rounded-full transition-all duration-700 flex items-center justify-center text-xs font-bold text-black"
+          style={{
+            width: `${percentage}%`,
+            backgroundColor: color,
+          }}
+        >
+          {percentage >= 10 && `${percentage}%`}
+        </div>
       </div>
     </div>
   );

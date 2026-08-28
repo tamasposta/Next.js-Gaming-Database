@@ -3,6 +3,7 @@ import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ChangeEvent } from "react";
 import { NavigationItem } from "../types/navigation-item.types";
 import useNavigation from "../hooks/use-navigation";
@@ -11,6 +12,7 @@ import { classNames } from "../utils/classnames-menu";
 
 export default function Header() {
   const { handleSubmit, setSearchText } = useNavigation();
+  const pathname = usePathname();
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -46,23 +48,26 @@ export default function Header() {
                     {navigation &&
                       navigation.map(
                         (
-                          { name, href, current }: NavigationItem,
+                          { name, href }: NavigationItem,
                           index: number
-                        ) => (
-                          <Link
-                            key={index}
-                            href={href}
-                            className={classNames(
-                              current
-                                ? "bg-gray-900 text-white"
-                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
-                            )}
-                            aria-current={current ? "page" : undefined}
-                          >
-                            {name}
-                          </Link>
-                        )
+                        ) => {
+                          const isCurrent = pathname === href;
+                          return (
+                            <Link
+                              key={index}
+                              href={href}
+                              className={classNames(
+                                isCurrent
+                                  ? "bg-gray-900 text-white"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                "rounded-md px-3 py-2 text-sm font-medium"
+                              )}
+                              aria-current={isCurrent ? "page" : undefined}
+                            >
+                              {name}
+                            </Link>
+                          );
+                        }
                       )}
                   </div>
                 </div>
@@ -112,22 +117,25 @@ export default function Header() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation &&
                 navigation.map(
-                  ({ name, href, current }: NavigationItem, index: number) => (
-                    <Disclosure.Button
-                      key={index}
-                      as="a"
-                      href={href}
-                      className={classNames(
-                        current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block rounded-md px-3 py-2 text-base font-medium"
-                      )}
-                      aria-current={current ? "page" : undefined}
-                    >
-                      {name}
-                    </Disclosure.Button>
-                  )
+                  ({ name, href }: NavigationItem, index: number) => {
+                    const isCurrent = pathname === href;
+                    return (
+                      <Disclosure.Button
+                        key={index}
+                        as="a"
+                        href={href}
+                        className={classNames(
+                          isCurrent
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "block rounded-md px-3 py-2 text-base font-medium"
+                        )}
+                        aria-current={isCurrent ? "page" : undefined}
+                      >
+                        {name}
+                      </Disclosure.Button>
+                    );
+                  }
                 )}
             </div>
           </Disclosure.Panel>

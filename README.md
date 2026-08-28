@@ -74,7 +74,7 @@ Contributions are welcome! Please fork this repository and create a pull request
 
 ## Acknowledgements
 
-- [RAWG](https://rawg.io/) for providing the video game data
+- [IGDB](https://igdb.com/) for providing the video game data
 - [Next.js](https://nextjs.org/) for the framework
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Prettier](https://prettier.io/) for code formatting

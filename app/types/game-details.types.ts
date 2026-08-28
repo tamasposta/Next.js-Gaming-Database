@@ -22,12 +22,44 @@ export type Rating = {
   percent: number;
 };
 
+export type Genre = {
+  id: number;
+  name: string;
+  slug: string;
+};
+
+export type Company = {
+  id: number;
+  name: string;
+  isDeveloper: boolean;
+  isPublisher: boolean;
+  website?: string;
+};
+
+export type Video = {
+  id: number;
+  name?: string;
+  videoId: string;
+};
+
+export type RelatedGame = {
+  id: number;
+  name: string;
+  slug: string;
+  coverImage?: string;
+};
+
+export type Collection = {
+  name: string;
+  games: RelatedGame[];
+};
+
 export type GameDetails = {
   name?: string;
   slug?: string;
   metacritic?: number | null;
   released?: string;
-  playtime?: number;
+  game_time_to_beats?: number | null;
   description?: string | Buffer;
   website?: string;
   background_image?: string;
@@ -35,6 +67,12 @@ export type GameDetails = {
   platforms: Platforms[];
   ratings?: Rating[];
   rating?: number;
+  genres?: Genre[];
+  companies?: Company[];
+  videos?: Video[];
+  collection?: Collection | null;
+  similarGames?: RelatedGame[];
+  dlcsAndExpansions?: RelatedGame[];
 };
 
 export type Gallery = {

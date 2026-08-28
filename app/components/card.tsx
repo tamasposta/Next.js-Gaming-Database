@@ -11,7 +11,10 @@ export default function Card({
   background_image,
 }: Game) {
   return (
-    <div className="bg-neutral rounded-md hover:outline hover:outline-2 hover:outline-neutral-content outline outline-neutral sm:w-[280px] h-full">
+    <Link
+          href={`/games/${slug}`}
+          >
+    <div className="bg-neutral rounded-md hover:scale-105 transition-all duration-200 hover:outline hover:outline-2 hover:outline-neutral-content sm:w-[280px] h-full">
       <div
         className="w-full aspect-[5/7] bg-cover bg-center rounded-t-md"
         style={{ backgroundImage: `url(${background_image})` }}
@@ -50,16 +53,8 @@ export default function Card({
           )}
         </div>
         <h4 className="text-sm">Release date: {released}</h4>
-        <Link
-          href={`/games/${slug}`}
-          className="btn btn-outline btn-primary btn-sm"
-        >
-          See details
-        </Link>
-        {/* <Link href={`/games/${slug}`}>
-          <a className="btn btn-outline btn-primary btn-sm">See details</a>
-        </Link> */}
       </div>
     </div>
+      </Link>
   );
 }

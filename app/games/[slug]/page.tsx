@@ -4,6 +4,7 @@ import GameMainImages from "../../components/gamepage/game-main-images";
 import GameMainInfo from "../../components/gamepage/game-main-info";
 import GameDetails from "../../components/gamepage/game-details";
 import Rating from "../../components/gamepage/rating";
+import RelatedGames from "../../components/gamepage/related-games";
 import type { PageProps } from "../../types/page-props.types";
 
 export default async function GameDetailsPage({ params }: PageProps) {
@@ -26,7 +27,7 @@ export default async function GameDetailsPage({ params }: PageProps) {
         name={gameDetails.name}
         released={gameDetails.released}
         metacritic={gameDetails.metacritic}
-        playtime={gameDetails.playtime}
+        game_time_to_beats={gameDetails.game_time_to_beats}
         platforms={[]}
         description={""}
       />
@@ -44,6 +45,10 @@ export default async function GameDetailsPage({ params }: PageProps) {
             description={gameDetails.description}
             platforms={gameDetails.platforms}
             website={gameDetails.website}
+            genres={gameDetails.genres}
+            companies={gameDetails.companies}
+            videos={gameDetails.videos}
+            collection={gameDetails.collection}
           />
         </div>
       </div>
@@ -54,6 +59,11 @@ export default async function GameDetailsPage({ params }: PageProps) {
         description={""}
       />
       <Gallery images={screenshots} />
+      <RelatedGames
+        collection={gameDetails.collection}
+        similarGames={gameDetails.similarGames}
+        dlcsAndExpansions={gameDetails.dlcsAndExpansions}
+      />
     </div>
   );
 }
