@@ -7,7 +7,7 @@
 
 ## Description
 
-Video Game Database App is a Next.js-based application that provides information on various video games using the RAWG API. This project was developed to practice and deepen my understanding of the Next.js framework, along with utilizing Tailwind CSS, Prettier, and Typescript.
+Video Game Database App is a Next.js-based application that provides comprehensive information on video games using the IGDB API. This project was developed to practice and deepen my understanding of the Next.js framework, along with utilizing Tailwind CSS, Prettier, and TypeScript.
 
 ## Table of Contents
 
@@ -49,10 +49,17 @@ Video Game Database App is a Next.js-based application that provides information
 
 ## Features
 
-- Search for video games
-- View detailed information about each game
-- Responsive design
-- User-friendly interface
+- **Dynamic Hero Banner**: Automatically fetches and showcases background artwork of the most popular game from IGDB.
+- **Search & All Games Page**: Search games by query and filter by Genre, Release Year, and Platform (PlayStation, Xbox, Nintendo, PC).
+- **Sorting Options**: Sort game results by Name (A-Z), Release Date, or Metacritic score.
+- **Rich Game Details Page**:
+  - Detailed overview, summary, platform support, and PC system requirements.
+  - Interactive **User Rating Progress Bar** with percentage score and color-coded labels (*Exceptional, Recommended, Meh, Skip*).
+  - Estimated **Time to Beat** (*normally*) in hours.
+  - Developer and Publisher information with website links.
+  - Embedded YouTube **Trailer Video Player**.
+  - **Related Games & Franchise**: Browse other games in the same franchise, DLCs/expansions, and similar game recommendations.
+- **Responsive Design**: Mobile-friendly layout styled with Tailwind CSS.
 
 ## Technologies Used
 
