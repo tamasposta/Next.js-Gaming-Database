@@ -13,7 +13,7 @@ export default function Banner({ imageUrl, title, slug }: BannerProps) {
 
   return (
     <div
-      className="bg-primary text-primary-content mx-auto px-2 min-h-[600px] flex items-center justify-center bg-cover bg-center transition-all duration-500 border-b-2 border-neutral-content"
+      className="bg-primary text-primary-content mx-auto px-2 min-h-[400px] lg:min-h-[600px] flex items-center justify-center bg-cover bg-center transition-all duration-500 border-b-2 border-neutral-content"
       style={{ backgroundImage: `url('${bgUrl}')` }}
     >
       <div className="flex flex-col items-center w-fit h-fit gap-2 bg-base-100 p-6 rounded-md bg-opacity-80 backdrop-blur-sm text-center">

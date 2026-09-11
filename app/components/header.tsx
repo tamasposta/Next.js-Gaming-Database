@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChangeEvent } from "react";
+import { useAuth } from "./auth-provider";
 import { NavigationItem } from "../types/navigation-item.types";
 import useNavigation from "../hooks/use-navigation";
 import { navigation } from "../utils/navigation";
@@ -12,6 +13,7 @@ import { classNames } from "../utils/classnames-menu";
 
 export default function Header() {
   const { handleSubmit, setSearchText } = useNavigation();
+  const { isLoading, logout, user } = useAuth();
   const pathname = usePathname();
 
   return (
@@ -19,19 +21,8 @@ export default function Header() {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex flex-wrap h-16 max-sm:h-32 max-sm:pt-2 max-sm:items-start items-center justify-between">
-              <div className="relative inset-y-0 left-0 flex max-sm:w-1/3 items-center sm:hidden">
-                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
-              <div className="flex flex-1 max-sm:w-1/3 items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="relative flex items-start justify-between py-2 lg:h-16 lg:items-center lg:pt-0">
+              <div className="flex flex-1 items-start w-1/4 lg:w-1/3 justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
                     <Image
@@ -43,7 +34,7 @@ export default function Header() {
                     />
                   </Link>
                 </div>
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="ml-6 hidden lg:block">
                   <div className="flex space-x-4">
                     {navigation &&
                       navigation.map(
@@ -72,10 +63,11 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-              <div className="flex max-sm:w-1/3 mx-auto max-w-md justify-end">
+              
+              <div className="w-1/2 px-2 lg:static items-center justify-center lg:w-1/3 lg:px-0 lg:pt-0">
                 <form
                   onSubmit={handleSubmit}
-                  className="relative max-sm:absolute max-sm:top-16 items-center mx-auto w-max"
+                  className="relative mx-auto w-full lg:w-max"
                 >
                   <div className="relative bg-neutral">
                     <input
@@ -84,7 +76,7 @@ export default function Header() {
                       }
                       type="search"
                       id="default-search"
-                      className="peer cursor-pointer relative z-10 focus:z-0 h-10 rounded-lg bg-transparent border-2 border-primary pl-12 outline-none w-full max-sm:w-[96vw] focus:cursor-text focus:border-secondary"
+                      className="peer relative z-10 h-10 w-full cursor-pointer rounded-lg border-2 border-primary bg-transparent pl-12 outline-none focus:z-0 focus:cursor-text focus:border-secondary lg:w-auto"
                       placeholder="Search games..."
                       required
                     />
@@ -110,10 +102,45 @@ export default function Header() {
                   </div>
                 </form>
               </div>
+              <div className="flex w-1/4 items-center justify-end lg:hidden">
+                <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  {open ? (
+                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </Disclosure.Button>
+              </div>
+              <div className="hidden w-1/3 justify-end gap-2 lg:flex">
+                <div className="flex items-center gap-2">
+                  {isLoading ? null : user ? (
+                    <>
+                      <Link href="/favorites" className="btn btn-sm btn-ghost text-warning">
+                        ★ My Favorites
+                      </Link>
+                      <Link href="/wishlist" className="btn btn-sm btn-ghost text-accent">
+                        ❤︎ My Wishlist
+                      </Link>
+                      <Link href="/profile" className="btn btn-sm btn-ghost">
+                        🙎‍♂️ Profile
+                      </Link>
+                      <button type="button" onClick={() => void logout()} className="btn btn-sm btn-outline">
+                        ➥ Logout
+                      </button>
+                    </>
+                  ) : (
+                    <Link href="/login" className="btn btn-sm btn-primary">
+                      Login
+                    </Link>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="lg:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation &&
                 navigation.map(
@@ -137,6 +164,28 @@ export default function Header() {
                     );
                   }
                 )}
+              <div className="border-t border-gray-700 pt-2">
+                {user ? (
+                  <>
+                    <Link href="/favorites" className="block rounded-md px-3 py-2 text-base font-medium text-warning">
+                      ★ My Favorites
+                    </Link>
+                    <Link href="/wishlist" className="block rounded-md px-3 py-2 text-base font-medium text-accent">
+                      ❤︎ My Wishlist
+                    </Link>
+                    <Link href="/profile" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300">
+                      🙎‍♂️ Profile
+                    </Link>
+                    <button type="button" onClick={() => void logout()} className="block w-full bg-gray-700 rounded-md px-3 py-2 text-left text-base font-medium text-gray-300">
+                      ➥ Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link href="/login" className="block rounded-md px-3 py-2 text-base font-medium text-gray-300">
+                    Login
+                  </Link>
+                )}
+              </div>
             </div>
           </Disclosure.Panel>
         </>

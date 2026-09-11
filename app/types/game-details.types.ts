@@ -55,10 +55,12 @@ export type Collection = {
 };
 
 export type GameDetails = {
+  id?: number;
   name?: string;
   slug?: string;
   metacritic?: number | null;
   released?: string;
+  released_iso?: string;
   game_time_to_beats?: number | null;
   description?: string | Buffer;
   website?: string;

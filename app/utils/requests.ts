@@ -103,6 +103,19 @@ const toIsoDate = (timestamp?: number) => {
   return new Date(timestamp * 1000).toISOString().split("T")[0];
 };
 
+const toDisplayDate = (timestamp?: number) => {
+  if (!timestamp) {
+    return "TBA";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(timestamp * 1000));
+};
+
 const toFivePointRating = (rating?: number) => {
   if (!rating) {
     return 0;
@@ -172,7 +185,8 @@ const mapGame = (game: IgdbGame) => ({
   slug: game.slug,
   background_image: buildImageUrl(game.cover?.image_id, "cover_big_2x"),
   metacritic: game.total_rating ? Math.round(game.total_rating) : null,
-  released: toIsoDate(game.first_release_date),
+  released: toDisplayDate(game.first_release_date),
+  released_iso: toIsoDate(game.first_release_date),
 });
 
 const mapGameDetails = (game: IgdbGame, game_time_to_beats: number = 0) => {
@@ -249,10 +263,12 @@ const mapGameDetails = (game: IgdbGame, game_time_to_beats: number = 0) => {
   });
 
   return {
+    id: game.id,
     name: game.name,
     slug: game.slug,
     metacritic: game.total_rating ? Math.round(game.total_rating) : null,
-    released: toIsoDate(game.first_release_date),
+    released: toDisplayDate(game.first_release_date),
+    released_iso: toIsoDate(game.first_release_date),
     game_time_to_beats,
     description: game.summary || "No description available.",
     website: game.websites?.find(({ url }) => !!url)?.url || "",

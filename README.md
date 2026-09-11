@@ -1,95 +1,142 @@
-# Video Game Database App
+# Gaming Database
 
-![Video Game Database](https://img.shields.io/badge/Video%20Game%20Database-Next.js-blue.svg)
-![Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-green.svg)
-![Prettier](https://img.shields.io/badge/Code%20Formatter-Prettier-orange.svg)
-![Typescript](https://img.shields.io/badge/Language-Typescript-blue.svg)
+A full-stack game discovery and personal game library application. The frontend uses Next.js and the IGDB API for game data; a separate Laravel API handles accounts, profiles, favorites, wishlists, and play status.
 
-## Description
+## Features
 
-Video Game Database App is a Next.js-based application that provides comprehensive information on video games using the IGDB API. This project was developed to practice and deepen my understanding of the Next.js framework, along with utilizing Tailwind CSS, Prettier, and TypeScript.
+- Browse, search, filter, and sort games sourced from IGDB.
+- View game details, trailers, genres, platforms, developers, publishers, related games, and time-to-beat data.
+- Create an account and sign in with Laravel Sanctum cookie-based authentication.
+- Maintain a profile with name, address, date of birth, and favorite genres.
+- Add or remove games from Favorites using the star controls on cards and game detail pages.
+- Add or remove games from a Wishlist using the heart controls.
+- Track a game's playing status with start and completion dates.
+- Open dedicated My Favorites and My Wishlist pages.
+- Add a future game's release date to Google Calendar through a prefilled calendar link.
+- Responsive navigation that switches to a mobile menu below the `lg` breakpoint.
 
-## Table of Contents
+## Architecture
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [Screenshots](#screenshots)
+```text
+Next.js frontend (this repository)       http://localhost:3000
+        |
+        | IGDB game data, server-side only
+        v
+IGDB API
 
-## Installation
+Next.js frontend
+        |
+        | Sanctum cookies and JSON API
+        v
+Laravel API (separate Gaming-Database-API project)       http://localhost:8000
+        |
+        v
+MySQL
+```
 
-1. Clone the repository
+The Laravel backend is intentionally a separate project. During local development, keep it beside this repository:
+
+```text
+Frontend projektek/
+  Next.js-Gaming-Database/
+  Gaming-Database-API/
+```
+
+## Tech Stack
+
+- Next.js 14 and React 18
+- TypeScript
+- Tailwind CSS and DaisyUI
+- IGDB API and Twitch OAuth client credentials
+- Laravel 13, Laravel Sanctum, and MySQL
+
+## Prerequisites
+
+- Node.js 20 or newer
+- npm
+- PHP 8.3 or newer
+- Composer
+- MySQL 8 or compatible MariaDB server
+- Twitch developer credentials for the [IGDB API](https://api-docs.igdb.com/)
+
+## Frontend Setup
+
+1. Clone the repository and install dependencies:
+
    ```bash
-   git clone https://github.com/yourusername/videogame-database-app.git
-   ```
-2. Navigate to the project directory
-   ```bash
-   cd videogame-database-app
-   ```
-3. Install the dependencies
-   ```bash
+   git clone https://github.com/your-username/Next.js-Gaming-Database.git
+   cd Next.js-Gaming-Database
    npm install
    ```
 
-## Usage
+2. Create `.env.local` in the project root. You can use `.env.example` and `.env.local.example` as references.
 
-1. Create Twitch developer credentials for [IGDB](https://api-docs.igdb.com/#account-creation).
-2. Create a `.env.local` file in the root directory and add your credentials:
-   ```plaintext
-   IGDB_CLIENT_ID=your_client_id
-   IGDB_CLIENT_SECRET=your_client_secret
+   ```env
+   IGDB_CLIENT_ID=your_twitch_client_id
+   IGDB_CLIENT_SECRET=your_twitch_client_secret
+   NEXT_PUBLIC_LARAVEL_API_URL=http://localhost:8000
    ```
-3. Start the development server
+
+3. Start the frontend:
+
    ```bash
    npm run dev
    ```
 
-## Features
+4. Open [http://localhost:3000](http://localhost:3000).
 
-- **Dynamic Hero Banner**: Automatically fetches and showcases background artwork of the most popular game from IGDB.
-- **Search & All Games Page**: Search games by query and filter by Genre, Release Year, and Platform (PlayStation, Xbox, Nintendo, PC).
-- **Sorting Options**: Sort game results by Name (A-Z), Release Date, or Metacritic score.
-- **Rich Game Details Page**:
-  - Detailed overview, summary, platform support, and PC system requirements.
-  - Interactive **User Rating Progress Bar** with percentage score and color-coded labels (*Exceptional, Recommended, Meh, Skip*).
-  - Estimated **Time to Beat** (*normally*) in hours.
-  - Developer and Publisher information with website links.
-  - Embedded YouTube **Trailer Video Player**.
-  - **Related Games & Franchise**: Browse other games in the same franchise, DLCs/expansions, and similar game recommendations.
-- **Responsive Design**: Mobile-friendly layout styled with Tailwind CSS.
+## Laravel API Setup
 
-## Technologies Used
+Set up the separate `Gaming-Database-API` Laravel project before using authentication or personal-library features.
 
-- **Next.js**: The React Framework for Production
-- **Tailwind CSS**: Utility-first CSS framework
-- **Prettier**: Code formatter
-- **Typescript**: Typed JavaScript at Any Scale
+1. Configure its `.env` file for MySQL:
 
-## Contributing
+   ```env
+   APP_URL=http://localhost:8000
 
-Contributions are welcome! Please fork this repository and create a pull request with your changes.
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=gaming_database
+   DB_USERNAME=your_mysql_user
+   DB_PASSWORD=your_mysql_password
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/YourFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/YourFeature`)
-5. Open a pull request
+   SANCTUM_STATEFUL_DOMAINS=localhost:3000,127.0.0.1:3000
+   SESSION_DOMAIN=null
+   ```
 
+2. Create the database, then run migrations:
 
-## Acknowledgements
+   ```bash
+   php artisan migrate
+   ```
 
-- [IGDB](https://igdb.com/) for providing the video game data
-- [Next.js](https://nextjs.org/) for the framework
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Prettier](https://prettier.io/) for code formatting
-- [Typescript](https://www.typescriptlang.org/) for the language
+3. Start the API:
+
+   ```bash
+   php artisan serve --host=localhost --port=8000
+   ```
+
+The frontend expects the API to permit credentialed CORS requests from `http://localhost:3000` and `http://127.0.0.1:3000`.
+
+## Available Scripts
+
+```bash
+npm run dev       # Start the Next.js development server
+npm run build     # Create a production build
+npm run start     # Start the production server after building
+npx tsc --noEmit  # Run TypeScript type checking
+```
+
+## Notes
+
+- IGDB credentials are server-only and must never be exposed with a `NEXT_PUBLIC_` prefix.
+- The Google Calendar integration is a standard event-creation link; it does not store Google credentials or access a user's calendar directly.
+- Do not commit `.env.local` or Laravel `.env` files. They contain environment-specific configuration and may contain secrets.
 
 ## Screenshots
 
-![Gaming-database-pc](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/39b9800f-58db-4d59-b7bc-cd8c515c1d4d)
+![Gaming Database desktop](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/39b9800f-58db-4d59-b7bc-cd8c515c1d4d)
 
-![Gaming-database-mobile-tablet](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/1cb9534e-b225-45e2-b3a0-de1a5fcf9b22)
+![Gaming Database mobile](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/1cb9534e-b225-45e2-b3a0-de1a5fcf9b22)
 

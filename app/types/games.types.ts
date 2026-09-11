@@ -4,6 +4,7 @@ export type Game = {
   background_image: string;
   metacritic: number | null;
   released: string;
+  released_iso: string;
   slug: string;
 };
 

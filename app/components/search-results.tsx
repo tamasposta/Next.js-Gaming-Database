@@ -75,6 +75,7 @@ export default function SearchResults({
                 background_image,
                 metacritic,
                 released,
+                released_iso,
                 slug,
               }: Game) => (
                 <Card
@@ -84,6 +85,7 @@ export default function SearchResults({
                   background_image={background_image}
                   metacritic={metacritic}
                   released={released}
+                  released_iso={released_iso}
                   slug={slug}
                 />
               )

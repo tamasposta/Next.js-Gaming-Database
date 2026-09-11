@@ -13,7 +13,7 @@ export default async function HomePage() {
   const games: Game[] = gamesData ?? [];
   const currentYear = new Date().getUTCFullYear();
   const loadedYear =
-    games.find((game) => /^\d{4}-\d{2}-\d{2}$/.test(game.released))?.released.slice(0, 4) ||
+    games.find((game) => /^\d{4}-\d{2}-\d{2}$/.test(game.released_iso))?.released_iso.slice(0, 4) ||
     String(currentYear);
 
   return (
@@ -42,6 +42,7 @@ export default async function HomePage() {
                   background_image,
                   metacritic,
                   released,
+                  released_iso,
                   slug,
                 }: Game) => (
                   <Card
@@ -51,6 +52,7 @@ export default async function HomePage() {
                     background_image={background_image}
                     metacritic={metacritic}
                     released={released}
+                    released_iso={released_iso}
                     slug={slug}
                   />
                 )

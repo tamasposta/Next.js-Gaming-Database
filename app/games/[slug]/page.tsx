@@ -24,8 +24,12 @@ export default async function GameDetailsPage({ params }: PageProps) {
   return (
     <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 sm:my-20 max-sm:my-10">
       <GameMainInfo
+        id={gameDetails.id}
         name={gameDetails.name}
         released={gameDetails.released}
+        released_iso={gameDetails.released_iso}
+        slug={gameDetails.slug}
+        background_image={gameDetails.background_image}
         metacritic={gameDetails.metacritic}
         game_time_to_beats={gameDetails.game_time_to_beats}
         platforms={[]}

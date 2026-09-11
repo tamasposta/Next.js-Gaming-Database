@@ -21,7 +21,7 @@ export default function GameDetails({
   const publishers = companies?.filter((c) => c.isPublisher) ?? [];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 pb-4">
       {/* Trailer Video */}
       {videos && videos.length > 0 && (
         <div>
