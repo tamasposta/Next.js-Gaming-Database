@@ -85,7 +85,7 @@ Frontend projektek/
 
 4. Open [http://localhost:3000](http://localhost:3000).
 
-## Laravel API Setup
+## Laravel API Setup:
 
 Set up the separate `Gaming-Database-API` Laravel project before using authentication or personal-library features.
 
