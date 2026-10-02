@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/sanctum/csrf-cookie",
+      "destination": "https://gamingapi.tomidesign.hu/sanctum/csrf-cookie"
+    },
+    {
+      "source": "/api/:path*",
+      "destination": "https://gamingapi.tomidesign.hu/api/:path*"
+    }
+  ]
+}
