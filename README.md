@@ -5,6 +5,7 @@ A full-stack game discovery and personal game library application. The frontend 
 ## Features
 
 - Browse, search, filter, and sort games sourced from IGDB.
+- Browse the 10 most hyped games by release month for the current and following year, including past months in the current year; months are collapsible and games are ordered by release date.
 - View game details, trailers, genres, platforms, developers, publishers, related games, and time-to-beat data.
 - Create an account and sign in with Laravel Sanctum cookie-based authentication.
 - Maintain a profile with name, address, date of birth, and favorite genres.
@@ -139,4 +140,3 @@ npx tsc --noEmit  # Run TypeScript type checking
 ![Gaming Database desktop](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/39b9800f-58db-4d59-b7bc-cd8c515c1d4d)
 
 ![Gaming Database mobile](https://github.com/tamasposta/Next.js-Gaming-Database/assets/134706837/1cb9534e-b225-45e2-b3a0-de1a5fcf9b22)
-

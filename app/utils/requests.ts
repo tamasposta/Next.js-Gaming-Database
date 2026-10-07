@@ -1,6 +1,7 @@
 import "server-only";
 
 import { cache } from "react";
+import type { Game } from "../types/games.types";
 
 const IGDB_CLIENT_ID = process.env.IGDB_CLIENT_ID;
 const IGDB_CLIENT_SECRET = process.env.IGDB_CLIENT_SECRET;
@@ -70,6 +71,7 @@ type IgdbGame = {
   slug: string;
   total_rating?: number;
   total_rating_count?: number;
+  hypes?: number;
   first_release_date?: number;
   summary?: string;
   cover?: IgdbImage;
@@ -91,6 +93,17 @@ type IgdbGame = {
 
 type IgdbTokenResponse = {
   access_token: string;
+};
+
+type IgdbMultiqueryResult = {
+  name: string;
+  result: IgdbGame[];
+};
+
+export type UpcomingGamesMonth = {
+  year: number;
+  month: number;
+  games: Game[] | null;
 };
 
 const escapeQuery = (value: string) => value.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
@@ -387,6 +400,54 @@ export const getGames = async () => {
   } catch (error) {
     console.error(error);
     return null;
+  }
+};
+
+export const getUpcomingGamesByMonth = async (): Promise<UpcomingGamesMonth[]> => {
+  const currentYear = new Date().getUTCFullYear();
+  const months = [currentYear, currentYear + 1].flatMap((year) =>
+    Array.from({ length: 12 }, (_, index) => ({ year, month: index + 1 }))
+  );
+  const queryGroups = Array.from({ length: Math.ceil(months.length / 10) }, (_, index) =>
+    months.slice(index * 10, index * 10 + 10)
+  );
+
+  try {
+    const results = await Promise.all(
+      queryGroups.map(async (group) => {
+        const query = group
+          .map(({ year, month }) => {
+            const start = Math.floor(Date.UTC(year, month - 1, 1) / 1000);
+            const end = Math.floor(Date.UTC(year, month, 1) / 1000);
+            const name = `month-${year}-${month}`;
+
+            return [
+              `query games "${name}" {`,
+              "fields name,slug,cover.image_id,total_rating,total_rating_count,hypes,first_release_date;",
+              `where version_parent = null & cover != null & first_release_date >= ${start} & first_release_date < ${end};`,
+              "sort hypes desc;",
+              "limit 10;",
+              "};",
+            ].join(" ");
+          })
+          .join(" ");
+        const data = await igdbRequest<IgdbMultiqueryResult>("multiquery", query);
+
+        return group.map(({ year, month }) => {
+          const result = data?.find((entry) => entry.name === `month-${year}-${month}`);
+          return {
+            year,
+            month,
+            games: result ? result.result.map(mapGame) : null,
+          };
+        });
+      })
+    );
+
+    return results.flat();
+  } catch (error) {
+    console.error("Error fetching monthly upcoming games:", error);
+    return months.map(({ year, month }) => ({ year, month, games: null }));
   }
 };
 

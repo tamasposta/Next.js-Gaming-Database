@@ -22,7 +22,7 @@ export default function Header() {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex items-start justify-between py-2 lg:h-16 lg:items-center lg:pt-0">
-              <div className="flex flex-1 items-start w-1/4 lg:w-1/3 justify-start">
+              <div className="flex flex-1 items-start w-1/4 xl:w-2/5 justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
                     <Image
@@ -34,7 +34,7 @@ export default function Header() {
                     />
                   </Link>
                 </div>
-                <div className="ml-6 hidden lg:block">
+                <div className="ml-6 hidden xl:block">
                   <div className="flex space-x-4">
                     {navigation &&
                       navigation.map(
@@ -64,7 +64,7 @@ export default function Header() {
                 </div>
               </div>
               
-              <div className="w-1/2 px-2 lg:static items-center justify-center lg:w-1/3 lg:px-0 lg:pt-0">
+              <div className="w-1/2 px-2 lg:static items-center justify-center xl:w-1/5 lg:px-0 lg:pt-0">
                 <form
                   onSubmit={handleSubmit}
                   className="relative mx-auto w-full lg:w-max"
@@ -102,7 +102,7 @@ export default function Header() {
                   </div>
                 </form>
               </div>
-              <div className="flex w-1/4 items-center justify-end lg:hidden">
+              <div className="flex w-1/4 items-center justify-end xl:hidden">
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
@@ -113,7 +113,7 @@ export default function Header() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="hidden w-1/3 justify-end gap-2 lg:flex">
+              <div className="hidden w-2/5 justify-end gap-2 xl:flex">
                 <div className="flex items-center gap-2">
                   {isLoading ? null : user ? (
                     <>
@@ -140,7 +140,7 @@ export default function Header() {
             </div>
           </div>
 
-          <Disclosure.Panel className="lg:hidden">
+          <Disclosure.Panel className="xl:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation &&
                 navigation.map(
